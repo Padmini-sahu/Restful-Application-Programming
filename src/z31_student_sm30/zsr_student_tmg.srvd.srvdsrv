@@ -1,0 +1,5 @@
+@EndUserText.label: 'Student Service Definition'
+define service ZSR_STUDENT_TMG {
+  expose ZC_STUDENTNAME_PS;
+  expose ZC_STUDENT_PS;
+}

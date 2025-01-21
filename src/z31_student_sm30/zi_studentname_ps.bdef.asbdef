@@ -1,0 +1,55 @@
+managed implementation in class zbp_i_studentname_ps unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_STUDENTNAME_PS //alias <alias_name>
+with unmanaged save
+//persistent table t002
+draft table zdt_studentname
+lock master
+total etag maxChangedAt
+authorization master ( instance )
+//etag master <field_name>
+##DRAFT_OP_NOT_REQUIRED
+{
+  //  create;
+  //  update;
+  //  delete;
+  field ( readonly ) StudentName;
+  association _Student { create; }
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+}
+
+define behavior for ZI_STUDENT_PS //alias <alias_name>
+persistent table zstudent_ps_31
+draft table zdt_student
+lock dependent by _sname
+authorization dependent by _sname
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+  field ( mandatory : create, readonly : update ) StudentId;
+  field ( readonly ) StudentName, ChangedAt, ChangedBy, LocalLastChangedAt;
+  field ( mandatory ) FirstName;
+  association _sname;
+
+  mapping for zstudent_ps_31
+    {
+      StudentId          = student_id;
+      FirstName          = first_name;
+      LastName           = last_name;
+      Address            = address;
+      Email              = email;
+      Phone              = phone;
+      Attendance         = attendance;
+      ChangedBy          = changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      ChangedAt          = changed_at;
+    }
+}

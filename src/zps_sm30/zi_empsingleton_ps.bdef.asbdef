@@ -1,0 +1,56 @@
+managed implementation in class zbp_i_empsingleton_ps unique;
+strict ( 2 );
+with draft; //total etag is mandatory
+
+define behavior for ZI_EMPSINGLETON_PS //alias <alias_name>
+with unmanaged save
+draft table zdt_empsingleton
+//persistent table t002
+lock master
+total etag maxChangedat
+authorization master ( instance )
+//etag master <field_name>
+##DRAFT_OP_NOT_REQUIRED
+{
+  //  create;
+  //  update;
+  //  delete;
+  field ( readonly ) EmpSingleton;
+  association _emp { create; }
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+}
+
+define behavior for ZI_EMP_PS //alias <alias_name>
+persistent table zemployee_ps_tab
+draft table zdt_employee
+lock dependent by _sEmp
+authorization dependent by _sEmp
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+  field ( mandatory : create, readonly : update ) EmployeeId;
+  field ( readonly ) EmpSingleton, ChangedAt, ChangedBy, LocalLastChangedAt;
+  field ( mandatory ) FirstName;
+  association _sEmp;
+
+  mapping for zemployee_ps_tab
+    {
+      EmployeeId         = employee_id;
+      FirstName          = first_name;
+      LastName           = last_name;
+      Department         = department;
+      JoiningDate        = joining_date;
+      IsActive           = is_active;
+      ChangedBy          = changed_by;
+      ChangedAt          = changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+}

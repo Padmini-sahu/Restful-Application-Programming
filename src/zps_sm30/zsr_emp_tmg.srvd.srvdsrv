@@ -1,0 +1,5 @@
+@EndUserText.label: 'Employee Data Maintenance'
+define service ZSR_EMP_tmg {
+  expose ZC_EMPSINGLETON_PS;
+  expose ZC_EMP_PS;
+}
