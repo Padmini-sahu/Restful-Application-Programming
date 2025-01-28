@@ -1,0 +1,5 @@
+CLASS zcl_bp_travel_ps_m DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_travel_ps_m.
+ENDCLASS.
+
+CLASS zcl_bp_travel_ps_m IMPLEMENTATION.
+ENDCLASS.
