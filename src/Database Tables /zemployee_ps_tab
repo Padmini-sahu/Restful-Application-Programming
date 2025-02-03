@@ -1,0 +1,25 @@
+@EndUserText.label : 'Employee Table'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zemployee_ps_tab {
+
+  @EndUserText.label : 'Employee ID'
+  key employee_id       : abap.char(20) not null;
+  @EndUserText.label : 'First Name'
+  first_name            : abap.char(50);
+  @EndUserText.label : 'Last Name'
+  last_name             : abap.char(50);
+  @EndUserText.label : 'Department'
+  department            : abap.char(20);
+  @EndUserText.label : 'Joining Date'
+  joining_date          : abap.dats;
+  @EndUserText.label : 'Active Employee'
+  is_active             : abap.char(1);
+  @EndUserText.label : 'Changed By'
+  changed_by            : abap.char(12);
+  local_last_changed_at : abp_locinst_lastchange_tstmpl;
+  changed_at            : abp_lastchange_tstmpl;
+
+}
