@@ -1,0 +1,27 @@
+@EndUserText.label : 'Student Master Table'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zstudent_ps_31 {
+
+  @EndUserText.label : 'Student Id'
+  key student_id        : abap.char(20) not null;
+  @EndUserText.label : 'First Name'
+  first_name            : abap.char(20);
+  @EndUserText.label : 'Last Name'
+  last_name             : abap.char(20);
+  @EndUserText.label : 'Address'
+  address               : abap.char(50);
+  @EndUserText.label : 'Email'
+  email                 : abap.char(50);
+  @EndUserText.label : 'Phone Number'
+  phone                 : abap.char(13);
+  @EndUserText.label : 'Attendance'
+  attendance            : abap.char(1);
+  @EndUserText.label : 'Changed By'
+  changed_by            : abap.char(12);
+  local_last_changed_at : abp_locinst_lastchange_tstmpl;
+  changed_at            : abp_lastchange_tstmpl;
+
+}
